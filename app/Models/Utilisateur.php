@@ -11,10 +11,8 @@ class Utilisateur extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // On indique à Laravel le nom de la table (pas la convention auto anglaise)
     protected $table = 'utilisateurs';
 
-    // La colonne mot de passe s'appelle mot_de_passe et non password
     protected $authPasswordName = 'mot_de_passe';
 
     protected $fillable = [

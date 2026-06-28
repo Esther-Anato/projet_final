@@ -13,6 +13,7 @@ class Utilisateur extends Authenticatable
 
     protected $table = 'utilisateurs';
 
+    // Dire à Laravel que la colonne mot de passe s'appelle mot_de_passe
     protected $authPasswordName = 'mot_de_passe';
 
     protected $fillable = [
@@ -31,7 +32,7 @@ class Utilisateur extends Authenticatable
     {
         return [
             'email_verifie_le' => 'datetime',
-            'mot_de_passe' => 'hashed',
+            'mot_de_passe'     => 'hashed',
         ];
     }
 

@@ -1,7 +1,48 @@
 <?php
 
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\ImageProduitController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+// ── Routes publiques ──────────────────────────────────────────────────────
+Route::get('/', [PageController::class, 'accueil'])->name('accueil');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+
+// Catalogue
+Route::get('/boutique', [ProduitController::class, 'index'])->name('produits.index');
+Route::get('/boutique/capsule', [ProduitController::class, 'capsule'])->name('produits.capsule');
+Route::get('/boutique/{produit}', [ProduitController::class, 'afficher'])->name('produits.afficher');
+
+// Panier public (visiteur invité via session)
+Route::get('/panier', [PanierController::class, 'index'])->name('panier.index');
+Route::post('/panier', [PanierController::class, 'ajouter'])
+    ->middleware('throttle:panier')
+    ->name('panier.ajouter');
+Route::patch('/panier/{lignePanier}', [PanierController::class, 'modifier'])->name('panier.modifier');
+Route::delete('/panier/{lignePanier}', [PanierController::class, 'supprimer'])->name('panier.supprimer');
+
+// ── Routes protégées (connexion obligatoire) ──────────────────────────────
+Route::middleware('auth')->group(function () {
+
+    // Commande
+    Route::get('/commande', [CommandeController::class, 'creer'])
+        ->name('commandes.creer');
+    Route::post('/commande', [CommandeController::class, 'enregistrer'])
+        ->middleware('throttle:commandes')
+        ->name('commandes.enregistrer');
+    Route::get('/commande/{commande}/confirmation', [CommandeController::class, 'confirmation'])
+        ->name('commandes.confirmation');
+
+    // Images produit
+    Route::post('/produits/{produit}/images', [ImageProduitController::class, 'enregistrer'])
+        ->name('images.enregistrer');
+    Route::delete('/images/{imageProduit}', [ImageProduitController::class, 'supprimer'])
+        ->name('images.supprimer');
+    Route::patch('/images/{imageProduit}/principale', [ImageProduitController::class, 'definirPrincipale'])
+        ->name('images.principale');
 });
+
+require __DIR__.'/auth.php';

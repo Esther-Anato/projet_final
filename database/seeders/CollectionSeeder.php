@@ -29,15 +29,14 @@ class CollectionSeeder extends Seeder
             'ordre' => 2,
         ]);
 
-        // Placeholder capsule — à activer (est_actif = true) une fois que
-        // la filière Création livre les vrais modèles de sacs de bureau.
+
         Collection::create([
-            'nom' => 'Capsule Bureau',
-            'slug' => 'capsule-bureau',
-            'description' => 'Nouvelle collection capsule 2026 : 2 à 3 sacs de bureau pour la jeune cadre ivoirienne, à offrir ou à s\'offrir.',
-            'histoire' => 'En attente du storytelling de la filière Création digitale.',
+            'nom' => 'WAWA ABA',
+            'slug' => 'wawa-aba',
+            'description' => 'Le symbole Wawa Aba provient des Adinkra d’Afrique de l’Ouest. Il représente la graine du Wawa, reconnue pour être robuste malgré sa petite taille.',
+            'histoire' => 'Pour Blac Joyaux, la collection Wawa Aba symbolise les femmes et les hommes modernes qui avancent avec assurance, sans avoir besoin d’en faire trop pour être remarqués.',
             'est_capsule' => true,
-            'est_actif' => false,
+            'est_actif' => true,
             'ordre' => 0,
         ]);
     }

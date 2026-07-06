@@ -22,4 +22,8 @@ class PageController extends Controller
 
         return view('pages.faq', compact('faqs'));
     }
+    public function histoire(): View
+{
+    return view('pages.histoire');
+}
 }

@@ -67,7 +67,7 @@ class PanierController extends Controller
             ]);
         }
 
-        return redirect()->route('panier.index')->with('succes', 'Produit ajouté au panier.');
+        return redirect()->back()->with('succes', 'Produit ajouté au panier.')->with('ouvrir_panier', true);
     }
 
   public function modifier(Request $request, LignePanier $lignePanier): RedirectResponse
@@ -85,7 +85,7 @@ class PanierController extends Controller
 
     $lignePanier->update(['quantite' => $valide['quantite']]);
 
-    return redirect()->route('panier.index')->with('succes', 'Quantité mise à jour.');
+    return redirect()->back()->with('succes', 'Quantité mise à jour.')->with('ouvrir_panier', true);
 }
 
 public function supprimer(Request $request, LignePanier $lignePanier): RedirectResponse
@@ -99,6 +99,6 @@ public function supprimer(Request $request, LignePanier $lignePanier): RedirectR
 
     $lignePanier->delete();
 
-    return redirect()->route('panier.index')->with('succes', 'Produit retiré du panier.');
+return redirect()->back()->with('succes', 'Produit retiré du panier.')->with('ouvrir_panier', true);
 }
 }

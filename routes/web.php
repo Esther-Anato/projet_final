@@ -13,6 +13,10 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/notre-histoire', [PageController::class, 'histoire'])->name('histoire');
 Route::view('/politique-retour', 'pages.retour')->name('retour');
 Route::view('/conditions-livraison', 'pages.livraison')->name('livraison');
+use App\Http\Controllers\ContactController;
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 // Catalogue
 Route::get('/boutique', [ProduitController::class, 'index'])->name('produits.index');
 Route::get('/boutique/capsule', [ProduitController::class, 'capsule'])->name('produits.capsule');
@@ -45,4 +49,15 @@ Route::delete('/panier/{lignePanier}', [PanierController::class, 'supprimer'])->
         ->name('images.enregistrer');
     Route::delete('/images/{imageProduit}', [ImageProduitController::class, 'supprimer'])
         ->name('images.supprimer');
+
+use App\Http\Controllers\Admin\AdminProduitController;
+
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/produits', [AdminProduitController::class, 'index'])->name('produits.index');
+    Route::get('/produits/creer', [AdminProduitController::class, 'creer'])->name('produits.creer');
+    Route::post('/produits', [AdminProduitController::class, 'enregistrer'])->name('produits.enregistrer');
+    Route::get('/produits/{produit}/editer', [AdminProduitController::class, 'editer'])->name('produits.editer');
+    Route::put('/produits/{produit}', [AdminProduitController::class, 'modifier'])->name('produits.modifier');
+    Route::delete('/produits/{produit}', [AdminProduitController::class, 'supprimer'])->name('produits.supprimer');
+});
 require __DIR__.'/auth.php';

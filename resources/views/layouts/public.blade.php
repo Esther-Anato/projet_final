@@ -231,10 +231,10 @@
         <div>
             <p class="font-display text-xs uppercase tracking-widest text-bj-or mb-4">Aide</p>
             <ul class="space-y-2 text-sm text-white/80">
-                <li><a href="#" class="hover:text-white">Livraison</a></li>
-                <li><a href="#" class="hover:text-white">Paiement</a></li>
+                <li><a href="{{ route('livraison') }}" class="hover:text-white">Livraison</a></li>
+                <li><a href="{{ route('retour') }}" class="hover:text-white">Retours et remboursements</a></li>
                 <li><a href="{{ route('faq') }}" class="hover:text-white">FAQ</a></li>
-                <li><a href="#" class="hover:text-white underline">WhatsApp</a></li>
+                <li><a href="https://wa.me/2250708771557" class="hover:text-white underline" target="_blank">WhatsApp</a></li>
             </ul>
         </div>
 

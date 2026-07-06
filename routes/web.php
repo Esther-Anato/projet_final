@@ -11,11 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'accueil'])->name('accueil');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/notre-histoire', [PageController::class, 'histoire'])->name('histoire');
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact.index');
-
-Route::post('/contact', [ContactController::class, 'envoyer'])->name('contact.envoyer');
+Route::view('/politique-retour', 'pages.retour')->name('retour');
+Route::view('/conditions-livraison', 'pages.livraison')->name('livraison');
 // Catalogue
 Route::get('/boutique', [ProduitController::class, 'index'])->name('produits.index');
 Route::get('/boutique/capsule', [ProduitController::class, 'capsule'])->name('produits.capsule');
@@ -32,7 +29,7 @@ Route::patch('/panier/{lignePanier}', [PanierController::class, 'modifier'])->na
 Route::delete('/panier/{lignePanier}', [PanierController::class, 'supprimer'])->name('panier.supprimer');
 
 // ── Routes protégées (connexion obligatoire) ──────────────────────────────
-Route::middleware('auth')->group(function () {
+
 
     // Commande
     Route::get('/commande', [CommandeController::class, 'creer'])
@@ -48,8 +45,4 @@ Route::middleware('auth')->group(function () {
         ->name('images.enregistrer');
     Route::delete('/images/{imageProduit}', [ImageProduitController::class, 'supprimer'])
         ->name('images.supprimer');
-    Route::patch('/images/{imageProduit}/principale', [ImageProduitController::class, 'definirPrincipale'])
-        ->name('images.principale');
-});
-
 require __DIR__.'/auth.php';

@@ -44,7 +44,7 @@ class SecuriteHeaders
                  . "img-src 'self' data: https:;";
         }
 
-        // $response->headers->set('Content-Security-Policy', $csp);
+        //  $response->headers->set('Content-Security-Policy', $csp);
 
         return $response;
     }

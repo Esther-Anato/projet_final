@@ -346,10 +346,10 @@
                 <p class="text-white/70 text-sm">Horaires d'ouverture</p>
                 <p class="text-white font-medium mb-4">Lundi au samedi, de 09h00 à 18h00</p>
                 <div class="flex flex-wrap gap-3 md:justify-end">
-                    <a href="#" class="inline-flex items-center gap-2 bg-bj-or text-bj-noir font-semibold px-5 py-2.5 rounded-full hover:brightness-105 transition">
+                    <a href="https://maps.app.goo.gl/3TFc9hKZQej5F36h9" class="inline-flex items-center gap-2 bg-bj-or text-bj-noir font-semibold px-5 py-2.5 rounded-full hover:brightness-105 transition">
                         <x-heroicon-s-map-pin class="w-4 h-4" /> Nous trouver
                     </a>
-                    <a href="#" class="inline-flex items-center gap-2 border border-white/60 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-white hover:text-bj-noir transition">
+                    <a href="{{ route('contact') }}" class="inline-flex items-center gap-2 border border-white/60 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-white hover:text-bj-noir transition">
                         Prendre rendez-vous
                     </a>
                 </div>

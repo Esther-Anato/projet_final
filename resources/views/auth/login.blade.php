@@ -1,47 +1,57 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Connexion — Blac Joyaux</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="min-h-screen grid place-items-center p-6"
+      style="background: radial-gradient(circle at center, #4A2461 0%, #3D1F4F 100%);">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <div class="w-full max-w-md">
+        {{-- logo --}}
+        <div class="text-center mb-8">
+            <img src="{{ asset('images/logo-blanc.png') }}" alt="Blac Joyaux" class="h-16 w-auto mx-auto mb-3">
+            <p class="text-bj-or text-sm tracking-widest uppercase">Espace administration</p>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        {{-- carte --}}
+        <div class="bg-white rounded-3xl shadow-2xl p-8">
+            <h1 class="font-script text-3xl text-bj-violet-dk text-center mb-6">Connexion</h1>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+            @if($errors->any())
+                <div class="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-2 mb-5 text-sm">
+                    {{ $errors->first() }}
+                </div>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <form method="POST" action="{{ route('login') }}" class="space-y-4">
+                @csrf
+                <div>
+                    <label class="block text-sm font-medium text-bj-noir mb-1">E-mail</label>
+                    <input type="email" name="email" value="{{ old('email') }}" required autofocus
+                           class="w-full rounded-lg border-gray-300 focus:border-bj-violet focus:ring-bj-violet">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-bj-noir mb-1">Mot de passe</label>
+                    <input type="password" name="password" required
+                           class="w-full rounded-lg border-gray-300 focus:border-bj-violet focus:ring-bj-violet">
+                </div>
+                <label class="flex items-center gap-2 text-sm text-bj-noir/70">
+                    <input type="checkbox" name="remember" class="rounded text-bj-violet focus:ring-bj-violet">
+                    Se souvenir de moi
+                </label>
+                <button type="submit"
+                        class="w-full bg-bj-violet text-white font-semibold py-3.5 rounded-full hover:bg-bj-violet-dk transition">
+                    Se connecter
+                </button>
+            </form>
         </div>
-    </form>
-</x-guest-layout>
+
+        <p class="text-center text-white/50 text-xs mt-6">© {{ date('Y') }} Blac Joyaux</p>
+    </div>
+
+</body>
+</html>

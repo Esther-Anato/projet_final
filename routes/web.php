@@ -6,6 +6,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ImageProduitController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 // ── Routes publiques ──────────────────────────────────────────────────────
 Route::get('/', [PageController::class, 'accueil'])->name('accueil');
@@ -13,7 +14,6 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/notre-histoire', [PageController::class, 'histoire'])->name('histoire');
 Route::view('/politique-retour', 'pages.retour')->name('retour');
 Route::view('/conditions-livraison', 'pages.livraison')->name('livraison');
-use App\Http\Controllers\ContactController;
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
@@ -60,4 +60,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('/produits/{produit}', [AdminProduitController::class, 'modifier'])->name('produits.modifier');
     Route::delete('/produits/{produit}', [AdminProduitController::class, 'supprimer'])->name('produits.supprimer');
 });
+Route::get('/dashboard', function () {
+    return redirect()->route('admin.produits.index');
+})->middleware('auth')->name('dashboard');
 require __DIR__.'/auth.php';

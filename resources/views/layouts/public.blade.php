@@ -12,7 +12,9 @@
 <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     {{-- Polices : Bricolage Grotesque (titres), Inter (corps), Fraunces (slogan) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
+<link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+<link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Great+Vibes&family=Inter:wght@400;500;600&family=Questrial&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -120,7 +122,7 @@
             {{-- nav droite (desktop) --}}
             <nav class="hidden lg:flex items-center gap-10 flex-1 justify-end">
                 <a href="{{ route('produits.index') }}" class="text-lg transition hover:opacity-70 {{ request()->routeIs('produits.*') ? 'text-bj-violet font-medium' : 'text-white' }}">Collections</a>
-                <a href="#" class="text-white text-lg hover:opacity-70 transition">Contact</a>
+                <a href="{{ route('contact') }}" class="text-white text-lg hover:opacity-70 transition">Contact</a>
             </nav>
 
             {{-- actions --}}

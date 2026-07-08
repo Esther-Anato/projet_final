@@ -549,14 +549,14 @@ class ProduitSeeder extends Seeder
 
         // COLLECTION WAWA ABA
 
-        // ── NAYO Noir ─────────────────────────────────────────────────────
+        // ── ALPHA Noir ─────────────────────────────────────────────────────
         $sac18 = Produit::create([
             'collection_id'      => $wawaAba->id,
-            'nom'                => 'NAYO - Noir',
-            'slug'               => 'nayo-noir',
-            'description_courte' => 'Cartable NAYO noir, sac de bureau premium pour la femme cadre moderne.',
+            'nom'                => 'ALPHA - Noir',
+            'slug'               => 'alpha-noir',
+            'description_courte' => 'Cartable ALPHA noir, sac de bureau premium pour la femme cadre moderne.',
             'description'        => 'Porte-documents premium au design contemporain, conçu pour transporter l’essentiel avec élégance. Sa silhouette fine et structurée s’adapte parfaitement au quotidien des professionnels modernes.',
-            'histoire'           => 'Pensé pour les hommes qui évoluent entre bureau, entrepreneuriat, rendez-vous et voyages d’affaires, Nayo accompagne chaque journée avec discrétion et assurance.',
+            'histoire'           => 'Pensé pour les hommes qui évoluent entre bureau, entrepreneuriat, rendez-vous et voyages d’affaires, Alpha accompagne chaque journée avec discrétion et assurance.',
             'matiere'            => 'Cuir grainé',
             'couleur'            => 'Noir',
             'variantes_couleur'  => ['Noir', 'Rouge bordeaux', 'Vert '],
@@ -567,27 +567,27 @@ class ProduitSeeder extends Seeder
             'prix'               => 80000,
             'est_vedette'        => true,
             'est_actif'          => true,
-            'meta_titre'         => 'NAYO Noir - Sac de bureau Blac Joyaux',
-            'meta_description'   => 'Cartable NAYO noir, sac de bureau premium Blac Joyaux, made in Côte d\'Ivoire.',
+            'meta_titre'         => 'ALPHA Noir - Sac de bureau Blac Joyaux',
+            'meta_description'   => 'Cartable ALPHA noir, sac de bureau premium Blac Joyaux, made in Côte d\'Ivoire.',
             'mots_cles_seo'      => ['sac de bureau homme Abidjan', 'cartable homme cadre CI', 'sac bureau made in Côte d\'Ivoire', 'cadeau homme cadre'],
         ]);
 
         ImageProduit::create([
             'produit_id'       => $sac18->id,
-            'chemin'           => 'images/produits/sac-NAYO-noir.jpg',
-            'texte_alternatif' => 'Cartable NAYO Noir - Sac de bureau Blac Joyaux',
+            'chemin'           => 'images/produits/sac-ALPHA-noir.jpg',
+            'texte_alternatif' => 'Cartable ALPHA Noir - Sac de bureau Blac Joyaux',
             'est_principale'   => true,
             'ordre'            => 0,
         ]);
 
-        // ── NAYO Rouge Bordeaux ───────────────────────────────────────────
+        // ── ALPHA Rouge Bordeaux ───────────────────────────────────────────
         $sac19 = Produit::create([
             'collection_id'      => $wawaAba->id,
-            'nom'                => 'NAYO - Rouge Bordeaux',
-            'slug'               => 'nayo-rouge-bordeaux',
-            'description_courte' => 'Cartable NAYO en rouge bordeaux, pour une femme cadre qui ose.',
+            'nom'                => 'ALPHA - Rouge Bordeaux',
+            'slug'               => 'alpha-rouge-bordeaux',
+            'description_courte' => 'Cartable ALPHA en rouge bordeaux, pour une femme cadre qui ose.',
             'description'        => 'Porte-documents premium au design contemporain, conçu pour transporter l’essentiel avec élégance. Sa silhouette fine et structurée s’adapte parfaitement au quotidien des professionnels modernes.',
-            'histoire'           => 'Pensé pour les hommes qui évoluent entre bureau, entrepreneuriat, rendez-vous et voyages d’affaires, Nayo accompagne chaque journée avec discrétion et assurance.',
+            'histoire'           => 'Pensé pour les hommes qui évoluent entre bureau, entrepreneuriat, rendez-vous et voyages d’affaires, Alpha accompagne chaque journée avec discrétion et assurance.',
             'matiere'            => 'Cuir grainé',
             'couleur'            => 'Rouge bordeaux',
             'variantes_couleur'  => ['Noir', 'Rouge bordeaux', 'Vert'],
@@ -598,27 +598,27 @@ class ProduitSeeder extends Seeder
             'prix'               => 80000,
             'est_vedette'        => true,
             'est_actif'          => true,
-            'meta_titre'         => 'NAYO Rouge Bordeaux - Sac de bureau Blac Joyaux',
-            'meta_description'   => 'Cartable NAYO rouge bordeaux, sac de bureau premium Blac Joyaux Abidjan.',
+            'meta_titre'         => 'ALPHA Rouge Bordeaux - Sac de bureau Blac Joyaux',
+            'meta_description'   => 'Cartable ALPHA rouge bordeaux, sac de bureau premium Blac Joyaux Abidjan.',
             'mots_cles_seo'      => ['sac de bureau homme Abidjan', 'cartable homme cadre CI', 'sac bureau made in Côte d\'Ivoire', 'cadeau homme cadre'],
         ]);
 
         ImageProduit::create([
             'produit_id'       => $sac19->id,
-            'chemin'           => 'images/produits/sac-NAYO-rouge.jpg',
-            'texte_alternatif' => 'Cartable NAYO Rouge Bordeaux - Sac de bureau Blac Joyaux',
+            'chemin'           => 'images/produits/sac-ALPHA-rouge.jpg',
+            'texte_alternatif' => 'Cartable ALPHA Rouge Bordeaux - Sac de bureau Blac Joyaux',
             'est_principale'   => true,
             'ordre'            => 0,
         ]);
 
-        // ── NAYO Vert ─────────────────────────────────────────────────────
+        // ── ALPHA Vert ─────────────────────────────────────────────────────
         $sac20 = Produit::create([
             'collection_id'      => $wawaAba->id,
-            'nom'                => 'NAYO - Vert',
-            'slug'               => 'nayo-vert',
-            'description_courte' => 'Cartable NAYO vert forêt, audacieux et professionnel.',
+            'nom'                => 'ALPHA - Vert',
+            'slug'               => 'alpha-vert',
+            'description_courte' => 'Cartable ALPHA vert forêt, audacieux et professionnel.',
             'description'        => 'Porte-documents premium au design contemporain, conçu pour transporter l’essentiel avec élégance. Sa silhouette fine et structurée s’adapte parfaitement au quotidien des professionnels modernes.',
-            'histoire'           => 'Pensé pour les hommes qui évoluent entre bureau, entrepreneuriat, rendez-vous et voyages d’affaires, Nayo accompagne chaque journée avec discrétion et assurance.',
+            'histoire'           => 'Pensé pour les hommes qui évoluent entre bureau, entrepreneuriat, rendez-vous et voyages d’affaires, Alpha accompagne chaque journée avec discrétion et assurance.',
             'matiere'            => 'Cuir grainé',
             'couleur'            => 'Vert',
             'variantes_couleur'  => ['Noir', 'Rouge bordeaux', 'Vert'],
@@ -629,27 +629,27 @@ class ProduitSeeder extends Seeder
             'prix'               => 80000,
             'est_vedette'        => false,
             'est_actif'          => true,
-            'meta_titre'         => 'NAYO Vert - Sac de bureau Blac Joyaux',
-            'meta_description'   => 'Cartable NAYO vert, sac de bureau original Blac Joyaux, made in Côte d\'Ivoire.',
+            'meta_titre'         => 'ALPHA Vert - Sac de bureau Blac Joyaux',
+            'meta_description'   => 'Cartable ALPHA vert, sac de bureau original Blac Joyaux, made in Côte d\'Ivoire.',
             'mots_cles_seo'      => ['sac de bureau homme Abidjan', 'cartable homme cadre CI', 'sac bureau made in Côte d\'Ivoire', 'cadeau homme cadre'],
         ]);
 
         ImageProduit::create([
             'produit_id'       => $sac20->id,
-            'chemin'           => 'images/produits/sac-NAYO-vert.jpg',
-            'texte_alternatif' => 'Cartable NAYO Vert - Sac de bureau Blac Joyaux',
+            'chemin'           => 'images/produits/sac-ALPHA-vert.jpg',
+            'texte_alternatif' => 'Cartable ALPHA Vert - Sac de bureau Blac Joyaux',
             'est_principale'   => true,
             'ordre'            => 0,
         ]);
 
-        // ── AKOBA Beige ───────────────────────────────────────────────────
+        // ── TERRA Beige ───────────────────────────────────────────────────
         $sac21 = Produit::create([
             'collection_id'      => $wawaAba->id,
-            'nom'                => 'AKOBA - Beige',
-            'slug'               => 'akoba-beige',
-            'description_courte' => 'Grand tote AKOBA beige, intemporel et polyvalent.',
+            'nom'                => 'TERRA - Beige',
+            'slug'               => 'terra-beige',
+            'description_courte' => 'Sac de bureau TERRA beige, intemporel et polyvalent.',
             'description'        => 'Sac de bureau féminin au design structuré, moderne et intemporel, conçu pour allier élégance, praticité et légèreté au quotidien.',
-            'histoire'           => 'Pensé pour les femmes actives d’aujourd’hui, Akoba accompagne chaque étape de la journée : bureau, rendez-vous, université, entrepreneuriat ou déplacements professionnels.',
+            'histoire'           => 'Pensé pour les femmes actives d’aujourd’hui, Terra accompagne chaque étape de la journée : bureau, rendez-vous, université, entrepreneuriat ou déplacements professionnels.',
             'matiere'            => 'Cuir grainé',
             'couleur'            => 'Beige',
             'variantes_couleur'  => ['Beige', 'Noir', 'Rouge bordeaux'],
@@ -660,27 +660,27 @@ class ProduitSeeder extends Seeder
             'prix'               => 70000,
             'est_vedette'        => true,
             'est_actif'          => true,
-            'meta_titre'         => 'AKOBA Beige - Collection WAWA ABA Blac Joyaux',
-            'meta_description'   => 'Sac tote AKOBA beige, collection capsule WAWA ABA Blac Joyaux, made in Côte d\'Ivoire.',
+            'meta_titre'         => 'TERRA Beige - Collection WAWA ABA Blac Joyaux',
+            'meta_description'   => 'Sac tote TERRA beige, collection capsule WAWA ABA Blac Joyaux, made in Côte d\'Ivoire.',
             'mots_cles_seo'      => ['sac tote femme Abidjan', 'grand sac bureau CI', 'sac cadeau femme cadre', 'maroquinerie ivoirienne premium'],
         ]);
 
         ImageProduit::create([
             'produit_id'       => $sac21->id,
-            'chemin'           => 'images/produits/sac-AKOBA-beige.jpg',
-            'texte_alternatif' => 'Sac AKOBA Beige - Collection WAWA ABA Blac Joyaux',
+            'chemin'           => 'images/produits/sac-TERRA-beige.jpg',
+            'texte_alternatif' => 'Sac TERRA Beige - Collection WAWA ABA Blac Joyaux',
             'est_principale'   => true,
             'ordre'            => 0,
         ]);
 
-        // ── AKOBA Noir ────────────────────────────────────────────────────
+        // ── TERRA Noir ────────────────────────────────────────────────────
         $sac22 = Produit::create([
             'collection_id'      => $wawaAba->id,
-            'nom'                => 'AKOBA - Noir',
-            'slug'               => 'akoba-noir',
-            'description_courte' => 'Grand tote AKOBA noir, intemporel et polyvalent.',
+            'nom'                => 'TERRA - Noir',
+            'slug'               => 'terra-noir',
+            'description_courte' => 'Sac de bureau TERRA noir, intemporel et polyvalent.',
             'description'        => 'Sac de bureau féminin au design structuré, moderne et intemporel, conçu pour allier élégance, praticité et légèreté au quotidien.',
-            'histoire'           => 'Pensé pour les femmes actives d’aujourd’hui, Akoba accompagne chaque étape de la journée : bureau, rendez-vous, université, entrepreneuriat ou déplacements professionnels.',
+            'histoire'           => 'Pensé pour les femmes actives d’aujourd’hui, Terra accompagne chaque étape de la journée : bureau, rendez-vous, université, entrepreneuriat ou déplacements professionnels.',
             'matiere'            => 'Cuir grainé',
             'couleur'            => 'Noir',
             'variantes_couleur'  => ['Beige', 'Noir', 'Rouge bordeaux'],
@@ -691,27 +691,27 @@ class ProduitSeeder extends Seeder
             'prix'               => 70000,
             'est_vedette'        => true,
             'est_actif'          => true,
-            'meta_titre'         => 'AKOBA Noir - Collection WAWA ABA Blac Joyaux',
-            'meta_description'   => 'Sac tote AKOBA noir, collection capsule WAWA ABA Blac Joyaux, made in Côte d\'Ivoire.',
+            'meta_titre'         => 'TERRA Noir - Collection WAWA ABA Blac Joyaux',
+            'meta_description'   => 'Sac tote TERRA noir, collection capsule WAWA ABA Blac Joyaux, made in Côte d\'Ivoire.',
             'mots_cles_seo'      => ['grand sac noir bureau Abidjan', 'tote bag femme CI', 'cadeau femme professionnelle'],
         ]);
 
         ImageProduit::create([
             'produit_id'       => $sac22->id,
-            'chemin'           => 'images/produits/sac-AKOBA-noir.jpg',
-            'texte_alternatif' => 'Sac AKOBA Noir - Collection WAWA ABA Blac Joyaux',
+            'chemin'           => 'images/produits/sac-TERRA-noir.jpg',
+            'texte_alternatif' => 'Sac TERRA Noir - Collection WAWA ABA Blac Joyaux',
             'est_principale'   => true,
             'ordre'            => 0,
         ]);
 
-        // ── AKOBA Rouge Bordeaux ──────────────────────────────────────────
+        // ── TERRA Rouge Bordeaux ──────────────────────────────────────────
         $sac23 = Produit::create([
             'collection_id'      => $wawaAba->id,
-            'nom'                => 'AKOBA - Rouge Bordeaux',
-            'slug'               => 'akoba-rouge-bordeaux',
-            'description_courte' => 'Grand tote AKOBA rouge bordeaux, pour une allure affirmée au bureau.',
+            'nom'                => 'TERRA - Rouge Bordeaux',
+            'slug'               => 'terra-rouge-bordeaux',
+            'description_courte' => 'Sac de bureau TERRA rouge bordeaux, pour une allure affirmée au bureau.',
             'description'        => 'Sac de bureau féminin au design structuré, moderne et intemporel, conçu pour allier élégance, praticité et légèreté au quotidien.',
-            'histoire'           => 'Pensé pour les femmes actives d’aujourd’hui, Akoba accompagne chaque étape de la journée : bureau, rendez-vous, université, entrepreneuriat ou déplacements professionnels.',
+            'histoire'           => 'Pensé pour les femmes actives d’aujourd’hui, Terra accompagne chaque étape de la journée : bureau, rendez-vous, université, entrepreneuriat ou déplacements professionnels.',
             'matiere'            => 'Cuir grainé',
             'couleur'            => 'Rouge bordeaux',
             'variantes_couleur'  => ['Beige', 'Noir', 'Rouge bordeaux'],
@@ -722,15 +722,15 @@ class ProduitSeeder extends Seeder
             'prix'               => 70000,
             'est_vedette'        => false,
             'est_actif'          => true,
-            'meta_titre'         => 'AKOBA Rouge Bordeaux - Collection WAWA ABA Blac Joyaux',
-            'meta_description'   => 'Sac tote AKOBA rouge bordeaux, cadeau idéal pour une femme cadre ivoirienne.',
+            'meta_titre'         => 'TERRA Rouge Bordeaux - Collection WAWA ABA Blac Joyaux',
+            'meta_description'   => 'Sac tote TERRA rouge bordeaux, cadeau idéal pour une femme cadre ivoirienne.',
             'mots_cles_seo'      => ['sac rouge bureau femme CI', 'cadeau femme cadre Abidjan', 'tote bag rouge bordeaux'],
         ]);
 
         ImageProduit::create([
             'produit_id'       => $sac23->id,
-            'chemin'           => 'images/produits/sac-AKOBA-rouge.jpg',
-            'texte_alternatif' => 'Sac AKOBA Rouge Bordeaux - Collection WAWA ABA Blac Joyaux',
+            'chemin'           => 'images/produits/sac-TERRA-rouge.jpg',
+            'texte_alternatif' => 'Sac TERRA Rouge Bordeaux - Collection WAWA ABA Blac Joyaux',
             'est_principale'   => true,
             'ordre'            => 0,
         ]);

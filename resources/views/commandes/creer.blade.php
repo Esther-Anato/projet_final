@@ -1,11 +1,11 @@
-@extends('layouts.public')
+@extends('layouts.public-solid')
 
 @section('title', 'Finaliser votre commande — Blac Joyaux')
 
 @section('content')
-<div class=" bg-bj-violet min-h-screen pt-28 pb-20">
+<div class="min-h-screen pt-28 pb-20">
     <div class="max-w-6xl mx-auto px-6">
-        <h1 class="font-script text-white text-5xl text-center mb-12">Finaliser votre commande</h1>
+        <h1 class="font-script text-bj-violet-dk text-5xl text-center mb-12">Finaliser votre commande</h1>
 
         @if($errors->any())
             <div class="max-w-2xl mx-auto mb-8 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
@@ -25,47 +25,46 @@
 
                 {{-- coordonnées --}}
                 <div>
-                    <h2 class="text-white font-display font-semibold text-xl mb-4">Coordonnées</h2>
+                    <h2 class="text-bj-violet-dk  font-display font-semibold text-xl mb-4">Coordonnées</h2>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <input name="nom_client" value="{{ old('nom_client') }}" required placeholder="Nom complet *"
                                class="w-full rounded-lg border-0 py-3.5 focus:ring-2 focus:ring-bj-or">
                         <input name="telephone_client" value="{{ old('telephone_client') }}" required placeholder="Téléphone (WhatsApp) *"
                                class="w-full rounded-lg border-0 py-3.5 focus:ring-2 focus:ring-bj-or">
-                        <input type="email" name="email_client" value="{{ old('email_client') }}" placeholder="E-mail (facultatif)"
+                        <input type="email" name="email_client" value="{{ old('email_client') }}" required placeholder="E-mail *"
                                class="w-full rounded-lg border-0 py-3.5 focus:ring-2 focus:ring-bj-or sm:col-span-2">
                     </div>
-                    <p class="text-white/60 text-sm mt-2">Vous validez votre commande en tant qu'invité.</p>
                 </div>
 
                 {{-- adresse de livraison --}}
                 <div>
-                    <h2 class="text-white font-display font-semibold text-xl mb-4">Adresse de livraison</h2>
+                    <h2 class="text-bj-violet-dk font-display font-semibold text-xl mb-4">Adresse de livraison</h2>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <input name="adresse_livraison" value="{{ old('adresse_livraison') }}" required placeholder="Adresse / quartier *"
                                class="w-full rounded-lg border-0 py-3.5 focus:ring-2 focus:ring-bj-or sm:col-span-2">
                         <input name="ville_livraison" value="{{ old('ville_livraison', 'Abidjan') }}" required placeholder="Ville *"
                                class="w-full rounded-lg border-0 py-3.5 focus:ring-2 focus:ring-bj-or sm:col-span-2">
                     </div>
-                    <p class="text-white/60 text-sm mt-2">Abidjan : livraison sous 3 à 5 jours. Autres villes de Côte d'Ivoire : 1 à 7 jours.</p>
+                    <p class="text-bj-noir/60 text-sm mt-2">Abidjan : livraison sous 3 à 5 jours. Autres villes de Côte d'Ivoire : 1 à 7 jours.</p>
                 </div>
 
                 {{-- paiement --}}
                 <div>
-                    <h2 class="text-white font-display font-semibold text-xl mb-4">Mode de paiement</h2>
+                    <h2 class="text-bj-violet-dk font-display font-semibold text-xl mb-4">Mode de paiement</h2>
                     <div class="space-y-3">
                         <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-4 cursor-pointer hover:bg-white/15 transition">
                             <input type="radio" name="mode_paiement" value="mobile_money_orange" required class="text-bj-or focus:ring-bj-or">
-                            <span class="text-white font-medium">Orange Money</span>
+                            <span class="text-bj-noir font-medium">Orange Money</span>
                         </label>
                         <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-4 cursor-pointer hover:bg-white/15 transition">
                             <input type="radio" name="mode_paiement" value="mobile_money_wave" class="text-bj-or focus:ring-bj-or">
-                            <span class="text-white font-medium">Wave</span>
+                            <span class="text-bj-noir font-medium">Wave</span>
                         </label>
                         <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-4 cursor-pointer hover:bg-white/15 transition">
                             <input type="radio" name="mode_paiement" value="especes_livraison" class="text-bj-or focus:ring-bj-or">
-                            <span class="text-white font-medium">
+                            <span class="text-bj-noir font-medium">
                                 Espèces à la livraison
-                                <span class="block text-white/50 text-xs font-normal">Vous payez en espèces à la réception de l'article.</span>
+                                <span class="block text-bj-noir/50 text-xs font-normal">Vous payez en espèces à la réception de l'article.</span>
                             </span>
                         </label>
                     </div>

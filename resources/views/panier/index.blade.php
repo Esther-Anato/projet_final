@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.public-solid')
 
 @section('title', 'Mon panier — Blac Joyaux')
 

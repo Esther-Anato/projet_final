@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.public-solid')
 
 @section('title', 'Politique de retour et remboursement — Blac Joyaux')
 

@@ -26,34 +26,96 @@
         </div>
     </section>
     {{-- ══════════ NOTRE HISTOIRE ══════════ --}}
-    <section class="bg-bj-creme py-20">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+  <section class="bg-bj-creme py-20">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
 
-            {{-- logo + titre --}}
-            <div class="flex flex-col items-center text-center">
-                <img src="{{ asset('images/logo-poupee.png') }}" alt="Poupée Joyau de Bla" class="h-40 w-auto mb-4">
-                <h2 class="font-script font-bold text-4xl md:text-5xl text-bj-noir leading-tight">
-                    Notre<br>Histoire
-                </h2>
-            </div>
+        {{-- logo + titre --}}
+        <div class="flex flex-col items-center text-center" data-reveal>
 
-            {{-- bloc texte --}}
-            <div class="bg-bj-or/40 rounded-3xl p-10 md:p-12 text-center">
-                <p class="text-bj-noir/80 leading-relaxed text-lg">
-                    Née à Abidjan en 2024, Blac Joyaux valorise le savoir-faire des artisans
-                    ivoiriens à travers des sacs qui allient héritage et élégance. De la rencontre
-                    entre sa fondatrice, Manuela Kouadio, et un artisan d'Adjamé est né le Joyau de Bla,
-                    inspiré de la poupée de fécondité ashanti — aujourd'hui pièce emblématique de la maison.
-                </p>
-                <a href="#"
-                   class="mt-8 inline-flex items-center gap-2 border border-bj-noir/40 text-bj-noir font-semibold
-                          px-7 py-3 rounded-full hover:bg-bj-noir hover:text-white transition">
-                    Découvrir notre histoire
-                    <x-heroicon-s-arrow-right class="w-4 h-4" />
-                </a>
-            </div>
+         <div class="relative mb-4">
+    {{-- halo doré pulsé derrière le symbole --}}
+    <div class="absolute inset-0 m-auto w-28 h-28 rounded-full bg-bj-or/30 blur-xl"
+         style="animation: bj-glow 3.5s ease-in-out infinite;"></div>
+
+    <img src="{{ asset('images/logo-poupee.png') }}" alt="Poupée Joyau de Bla"
+         class="relative h-40 w-auto"
+         style="animation: bj-swing 4.5s ease-in-out infinite; transform-origin: top center;">
+</div>
+            <h2 class="font-script font-bold text-4xl md:text-5xl text-bj-noir leading-tight">
+                Notre<br>Histoire
+            </h2>
         </div>
-    </section>
+
+        {{-- bloc texte --}}
+        <div class="bg-bj-or/40 rounded-3xl p-10 md:p-12 text-center" data-reveal style="transition-delay: 150ms;">
+            <p class="text-bj-noir/80 leading-relaxed text-lg">
+                Née à Abidjan en 2024, Blac Joyaux valorise le savoir-faire des artisans
+                ivoiriens à travers des sacs qui allient héritage et élégance. De la rencontre
+                entre sa fondatrice, Manuela Kouadio, et un artisan d'Adjamé est né le Joyau de Bla,
+                inspiré de la poupée de fécondité ashanti qui se présente aujourd'hui pièce emblématique de la maison.
+            </p>
+            <a href="{{ route('histoire') }}"
+               class="mt-8 inline-flex items-center gap-2 border border-bj-noir/40 text-bj-noir font-semibold
+                      px-7 py-3 rounded-full hover:bg-bj-noir hover:text-white transition">
+                Découvrir notre histoire
+                <x-heroicon-s-arrow-right class="w-4 h-4" />
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* flottement doux du symbole */
+    @keyframes bj-float {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-10px); }
+    }
+    /* halo doré qui respire derrière */
+    @keyframes bj-glow {
+        0%, 100% { opacity: 0.35; transform: scale(1); }
+        50%      { opacity: 0.6;  transform: scale(1.15); }
+    }
+    /* balancement doux, comme un pendentif suspendu */
+@keyframes bj-swing {
+    0%, 100% { transform: rotate(-6deg); }
+    50%      { transform: rotate(6deg); }
+}
+
+    /* apparition au scroll */
+    [data-reveal] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* respecte les préférences d'accessibilité : pas d'animation si l'utilisateur la refuse */
+    @media (prefers-reduced-motion: reduce) {
+        [data-reveal] { opacity: 1; transform: none; transition: none; }
+        img[style*="bj-float"], div[style*="bj-glow"] { animation: none !important; }
+    }
+</style>
+
+@push('scripts')
+<script>
+    (function() {
+        const items = document.querySelectorAll('[data-reveal]');
+        if (!items.length) return;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        items.forEach(el => observer.observe(el));
+    })();
+</script>
+@endpush
 {{-- ══════════ NOS COLLECTIONS ══════════ --}}
     <section class="bg-bj-violet py-16">
         <div class="max-w-4xl mx-auto px-6 text-center">
@@ -192,7 +254,7 @@
             <video class="absolute inset-0 w-full h-full object-cover"
                    autoplay loop muted playsinline
                    poster="{{ asset('images/savoir-faire-poster.jpg') }}">
-                <source src="{{ asset('videos/savoir-faire.webm') }}" type="video/mp4">
+                <source src="{{ asset('videos/video.mp4') }}" type="video/mp4">
                 Votre navigateur ne prend pas en charge la lecture vidéo.
             </video>
         </div>
@@ -238,7 +300,8 @@
                     <p class="text-sm text-bj-noir/70 leading-relaxed mb-5">
                         Échangez avec nous et finalisez votre commande en quelques messages.
                     </p>
-                    <a href="#" class="mt-auto inline-flex items-center gap-2 border border-bj-violet/40 text-bj-violet font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-bj-violet hover:text-white transition">
+
+                    <a href="https://wa.me/2250708771557" class="mt-auto inline-flex items-center gap-2 border border-bj-violet/40 text-bj-violet font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-bj-violet hover:text-white transition">
                         Nous écrire <x-heroicon-s-arrow-right class="w-4 h-4" />
                     </a>
                 </div>
@@ -252,7 +315,7 @@
                     <p class="text-sm text-bj-noir/70 leading-relaxed mb-5">
                         Réglez en espèces ou par Mobile Money, simplement et en toute confiance.
                     </p>
-                    <a href="#" class="mt-auto inline-flex items-center gap-2 border border-bj-violet/40 text-bj-violet font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-bj-violet hover:text-white transition">
+                    <a href="{{ route('livraison') }}" class="mt-auto inline-flex items-center gap-2 border border-bj-violet/40 text-bj-violet font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-bj-violet hover:text-white transition">
                         En savoir plus <x-heroicon-s-arrow-right class="w-4 h-4" />
                     </a>
                 </div>
@@ -266,7 +329,7 @@
                     <p class="text-sm text-bj-noir/70 leading-relaxed mb-5">
                         Recevez votre commande sous 1 à 3 jours dans tout Abidjan.
                     </p>
-                    <a href="#" class="mt-auto inline-flex items-center gap-2 border border-bj-violet/40 text-bj-violet font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-bj-violet hover:text-white transition">
+                    <a href="{{ route('livraison') }}" class="mt-auto inline-flex items-center gap-2 border border-bj-violet/40 text-bj-violet font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-bj-violet hover:text-white transition">
                         La livraison <x-heroicon-s-arrow-right class="w-4 h-4" />
                     </a>
                 </div>
@@ -322,7 +385,7 @@
         </div>
     </section>
     {{-- ══════════ SHOWROOM ══════════ --}}
-    <section class="relative min-h-[520px] flex items-end">
+    <section id="showroom" class="relative min-h-[520px] flex items-end">
         {{-- image/vidéo de fond --}}
         <img src="{{ asset('images/showroom.jpg') }}" alt="Showroom Blac Joyaux à Cocody Palmeraie"
              class="absolute inset-0 w-full h-full object-cover">

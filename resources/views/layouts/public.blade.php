@@ -23,6 +23,28 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
 </head>
+<script>
+    function rechercheProduits() {
+        return {
+            ouvert: false,
+            terme: '',
+            resultats: [],
+            chargement: false,
+            async chercher() {
+                if (this.terme.length < 2) { this.resultats = []; return; }
+                this.chargement = true;
+                try {
+                    const rep = await fetch(`{{ route('produits.recherche') }}?q=${encodeURIComponent(this.terme)}`);
+                    this.resultats = await rep.json();
+                } catch (e) {
+                    this.resultats = [];
+                } finally {
+                    this.chargement = false;
+                }
+            }
+        }
+    }
+</script>
 <body class="font-sans antialiased bg-bj-creme text-bj-noir">
 
     {{-- ══════════ ÉCRAN DE CHARGEMENT ══════════ --}}
@@ -83,22 +105,43 @@
             </nav>
 
             {{-- recherche --}}
-            <div x-data="{ ouvert: false }" class="relative flex items-center">
-                <button @click="ouvert = !ouvert" aria-label="Rechercher" class="text-white hover:text-bj-or transition flex items-center">
-                    <x-heroicon-o-magnifying-glass class="w-5 h-5 sm:w-6 sm:h-6" />
-                </button>
+            <div x-data="rechercheProduits()" class="relative">
+    <button @click="ouvert = !ouvert; $nextTick(() => $refs.champ.focus())"
+            aria-label="Rechercher" class="text-white hover:text-bj-or transition">
+        <x-heroicon-o-magnifying-glass class="w-6 h-6" />
+    </button>
 
-                <form x-show="ouvert" x-transition method="GET" action="{{ route('produits.index') }}"
-                      class="absolute right-0 top-full mt-3 bg-white rounded-full shadow-lg flex items-center px-4 py-2 w-[85vw] max-w-xs z-50"
-                      style="display:none;">
-                    <input type="text" name="recherche" placeholder="Rechercher un sac..."
-                           value="{{ request('recherche') }}"
-                           class="flex-1 border-0 focus:ring-0 text-sm text-bj-noir p-0" autofocus>
-                    <button type="submit" class="text-bj-violet shrink-0">
-                        <x-heroicon-o-magnifying-glass class="w-5 h-5" />
-                    </button>
-                </form>
-            </div>
+    {{-- panneau de recherche --}}
+    <div x-show="ouvert" x-transition @click.outside="ouvert = false"
+         class="absolute right-0 top-12 w-80 bg-white rounded-2xl shadow-2xl p-4 z-50" style="display:none;">
+        <input x-ref="champ" x-model="terme" @input.debounce.300ms="chercher()"
+               type="text" placeholder="Rechercher un sac..."
+               class="w-full rounded-full border-gray-300 text-sm text-bj-noir focus:border-bj-violet focus:ring-bj-violet mb-3">
+
+        {{-- résultats --}}
+        <div class="max-h-80 overflow-y-auto">
+            <template x-if="chargement">
+                <p class="text-center text-sm text-gray-400 py-4">Recherche...</p>
+            </template>
+            <template x-if="!chargement && terme.length >= 2 && resultats.length === 0">
+                <p class="text-center text-sm text-gray-400 py-4">Aucun résultat.</p>
+            </template>
+            <template x-for="produit in resultats" :key="produit.url">
+                <a :href="produit.url" class="flex items-center gap-3 p-2 rounded-lg hover:bg-bj-creme transition">
+                    <div class="w-12 h-12 rounded-lg bg-[#ece6dc] overflow-hidden shrink-0">
+                        <template x-if="produit.image">
+                            <img :src="produit.image" :alt="produit.nom" class="w-full h-full object-cover">
+                        </template>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-sm text-bj-noir truncate" x-text="produit.nom"></p>
+                        <p class="text-xs text-bj-violet-dk font-semibold" x-text="produit.prix"></p>
+                    </div>
+                </a>
+            </template>
+        </div>
+    </div>
+</div>
 
             {{-- panier --}}
             <a href="{{ route('panier.index') }}" aria-label="Panier" class="relative text-white hover:text-bj-or transition flex items-center">

@@ -27,6 +27,7 @@ class Commande extends Model
         'mode_paiement',
         'statut_paiement',
         'reference_paiement',
+        'mode_livraison',
         'statut',
         'livraison_jours_min',
         'livraison_jours_max',

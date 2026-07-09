@@ -21,6 +21,10 @@
                    class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.produits.*') ? 'bg-white/10 text-bj-or' : 'text-white/80 hover:bg-white/5' }}">
                     <x-heroicon-o-shopping-bag class="w-5 h-5" /> Produits
                 </a>
+                <a href="{{ route('admin.commandes.index') }}"
+   class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.commandes.*') ? 'bg-white/10 text-bj-or' : 'text-white/80 hover:bg-white/5' }}">
+    <x-heroicon-o-clipboard-document-list class="w-5 h-5" /> Commandes
+</a>
                 <a href="{{ route('accueil') }}"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-white/80 hover:bg-white/5 transition">
                     <x-heroicon-o-globe-alt class="w-5 h-5" /> Voir le site

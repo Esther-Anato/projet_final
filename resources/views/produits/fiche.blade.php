@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.public-solid')
 
 @section('title', $produit->meta_titre ?? $produit->nom.' — Blac Joyaux')
 @section('meta_description', $produit->meta_description ?? $produit->description_courte)
@@ -42,34 +42,31 @@
                 <h1 class="font-display font-bold text-3xl text-bj-noir mb-3">{{ $produit->nom }}</h1>
                 <p class="text-2xl font-semibold text-bj-violet-dk mb-6">{{ $produit->prix_formatte }}</p>
 
-                {{-- COULEURS : les autres coloris du même modèle --}}
-                @if($produitsLies->count())
-                    <div class="mb-6">
-                        <p class="text-sm font-medium text-bj-noir mb-2">
-                            Couleur : <span class="text-bj-noir/60">{{ $produit->couleur }}</span>
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            {{-- le coloris actuel (entouré) --}}
-                            <span class="w-11 h-11 rounded-full ring-2 ring-bj-violet ring-offset-2 overflow-hidden bg-[#ece6dc] grid place-items-center"
-                                  title="{{ $produit->couleur }}">
-                                @if($produit->imagePrincipale())
-                                    <img src="{{ $produit->imagePrincipale()->url }}" alt="{{ $produit->couleur }}" class="w-full h-full object-cover">
-                                @endif
-                            </span>
-                            {{-- les autres coloris (cliquables) --}}
-                            @foreach($produitsLies as $coloris)
-                                <a href="{{ route('produits.afficher', $coloris) }}"
-                                   title="{{ $coloris->couleur }}"
-                                   class="w-11 h-11 rounded-full overflow-hidden bg-[#ece6dc] hover:ring-2 hover:ring-bj-or ring-offset-2 transition grid place-items-center">
-                                    @if($coloris->imagePrincipale())
-                                        <img src="{{ $coloris->imagePrincipale()->url }}" alt="{{ $coloris->couleur }}" class="w-full h-full object-cover">
-                                    @endif
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
+              {{-- COULEURS : uniquement les vrais coloris du même modèle --}}
+@if($coloris->count())
+    <div class="mb-6">
+        <p class="text-sm font-medium text-bj-noir mb-2">
+            Couleur : <span class="text-bj-noir/60">{{ $produit->couleur }}</span>
+        </p>
+        <div class="flex flex-wrap gap-2">
+            {{-- coloris actuel (entouré) --}}
+            <span class="w-11 h-11 rounded-full ring-2 ring-bj-violet ring-offset-2 overflow-hidden bg-[#ece6dc]" title="{{ $produit->couleur }}">
+                @if($produit->imagePrincipale())
+                    <img src="{{ $produit->imagePrincipale()->url }}" alt="{{ $produit->couleur }}" class="w-full h-full object-cover">
                 @endif
-
+            </span>
+            {{-- autres coloris --}}
+            @foreach($coloris as $c)
+                <a href="{{ route('produits.afficher', $c) }}" title="{{ $c->couleur }}"
+                   class="w-11 h-11 rounded-full overflow-hidden bg-[#ece6dc] hover:ring-2 hover:ring-bj-or ring-offset-2 transition">
+                    @if($c->imagePrincipale())
+                        <img src="{{ $c->imagePrincipale()->url }}" alt="{{ $c->couleur }}" class="w-full h-full object-cover">
+                    @endif
+                </a>
+            @endforeach
+        </div>
+    </div>
+@endif
                 {{-- description courte --}}
                 @if($produit->description_courte)
                     <p class="text-bj-noir/70 leading-relaxed mb-6">{{ $produit->description_courte }}</p>

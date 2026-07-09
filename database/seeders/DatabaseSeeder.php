@@ -13,5 +13,10 @@ class DatabaseSeeder extends Seeder
             ProduitSeeder::class,
             FaqSeeder::class,
         ]);
+
+        \App\Models\User::firstOrCreate(
+            ['email' => 'admin@blacjoyaux.com'],
+            ['name' => 'Admin Blac Joyaux', 'password' => bcrypt('Admin2026')]
+        );
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ImageProduitController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\AdminCommandeController;
 
 // ── Routes publiques ──────────────────────────────────────────────────────
 Route::get('/', [PageController::class, 'accueil'])->name('accueil');
@@ -14,7 +15,7 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/notre-histoire', [PageController::class, 'histoire'])->name('histoire');
 Route::view('/politique-retour', 'pages.retour')->name('retour');
 Route::view('/conditions-livraison', 'pages.livraison')->name('livraison');
-
+Route::get('/api/recherche', [ProduitController::class, 'rechercheAjax'])->name('produits.recherche');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 // Catalogue
@@ -59,6 +60,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/produits/{produit}/editer', [AdminProduitController::class, 'editer'])->name('produits.editer');
     Route::put('/produits/{produit}', [AdminProduitController::class, 'modifier'])->name('produits.modifier');
     Route::delete('/produits/{produit}', [AdminProduitController::class, 'supprimer'])->name('produits.supprimer');
+    Route::get('/commandes', [AdminCommandeController::class, 'index'])->name('commandes.index');
+Route::get('/commandes/{commande}', [\App\Http\Controllers\Admin\AdminCommandeController::class, 'afficher'])->name('commandes.afficher');
+Route::patch('/commandes/{commande}/statut', [\App\Http\Controllers\Admin\AdminCommandeController::class, 'changerStatut'])->name('commandes.statut');
 });
 Route::get('/dashboard', function () {
     return redirect()->route('admin.produits.index');

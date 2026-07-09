@@ -31,7 +31,7 @@ class CollectionSeeder extends Seeder
 
 
         Collection::create([
-            'nom' => 'WAWA ABA',
+            'nom' => 'Wawa Aba',
             'slug' => 'wawa-aba',
             'description' => 'Le symbole Wawa Aba provient des Adinkra d’Afrique de l’Ouest. Il représente la graine du Wawa, reconnue pour être robuste malgré sa petite taille.',
             'histoire' => 'Pour Blac Joyaux, la collection Wawa Aba symbolise les femmes et les hommes modernes qui avancent avec assurance, sans avoir besoin d’en faire trop pour être remarqués.',

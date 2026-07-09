@@ -48,19 +48,28 @@ class ProduitController extends Controller
     /**
      * Fiche produit complète.
      */
-    public function afficher(Produit $produit): View
-    {
-        $produit->load(['collection', 'images']);
-        $produit->increment('nb_vues');
+   public function afficher(Produit $produit): View
+{
+    $produit->load(['collection', 'images']);
+    $produit->increment('nb_vues');
 
-        $produitsLies = Produit::actif()
-            ->where('collection_id', $produit->collection_id)
+    $coloris = $produit->modele
+        ? Produit::actif()
+            ->where('modele', $produit->modele)
             ->where('id', '!=', $produit->id)
-            ->limit(20)
-            ->get();
+            ->with('images')
+            ->get()
+        : collect();
 
-        return view('produits.fiche', compact('produit', 'produitsLies'));
-    }
+    // suggestions "vous aimerez aussi" = même collection
+    $produitsLies = Produit::actif()
+        ->where('collection_id', $produit->collection_id)
+        ->where('id', '!=', $produit->id)
+        ->limit(3)
+        ->get();
+
+    return view('produits.fiche', compact('produit', 'produitsLies', 'coloris'));
+}
 // ProduitController
 public function afficherCollection(Collection $collection): View
 {
@@ -76,4 +85,29 @@ public function afficherCollection(Collection $collection): View
 
         return view('produits.capsule', compact('produits'));
     }
+    public function rechercheAjax(Request $request)
+{
+    $terme = $request->query('q', '');
+
+    if (mb_strlen($terme) < 2) {
+        return response()->json([]);
+    }
+
+    $produits = Produit::actif()
+        ->where(function ($query) use ($terme) {
+            $query->where('nom', 'like', "%{$terme}%")
+                  ->orWhere('description_courte', 'like', "%{$terme}%");
+        })
+        ->with('images')
+        ->limit(6)
+        ->get()
+        ->map(fn ($p) => [
+            'nom'   => $p->nom,
+            'prix'  => $p->prix_formatte,
+            'url'   => route('produits.afficher', $p),
+            'image' => $p->imagePrincipale()?->url,
+        ]);
+
+    return response()->json($produits);
+}
 }

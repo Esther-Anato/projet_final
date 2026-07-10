@@ -104,63 +104,67 @@
                 <a href="{{ route('contact') }}" class="text-lg transition hover:opacity-70 {{ request()->routeIs('contact') ? 'text-bj-or  font-medium' : 'text-white' }}">Contact</a>
             </nav>
 
-            {{-- recherche --}}
-            <div x-data="rechercheProduits()" class="relative">
-    <button @click="ouvert = !ouvert; $nextTick(() => $refs.champ.focus())"
-            aria-label="Rechercher" class="text-white hover:text-bj-or transition">
-        <x-heroicon-o-magnifying-glass class="w-6 h-6" />
-    </button>
+{{-- conteneur des icônes : items-center aligne tout verticalement --}}
+<div class="flex items-center gap-4">
 
-    {{-- panneau de recherche --}}
-    <div x-show="ouvert" x-transition @click.outside="ouvert = false"
-         class="absolute right-0 top-12 w-80 bg-white rounded-2xl shadow-2xl p-4 z-50" style="display:none;">
-        <input x-ref="champ" x-model="terme" @input.debounce.300ms="chercher()"
-               type="text" placeholder="Rechercher un sac..."
-               class="w-full rounded-full border-gray-300 text-sm text-bj-noir focus:border-bj-violet focus:ring-bj-violet mb-3">
+    {{-- recherche --}}
+    <div x-data="rechercheProduits()" class="relative flex items-center">
+        <button @click="ouvert = !ouvert; $nextTick(() => $refs.champ.focus())"
+                aria-label="Rechercher" class="flex items-center text-white hover:text-bj-or transition">
+            <x-heroicon-o-magnifying-glass class="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
 
-        {{-- résultats --}}
-        <div class="max-h-80 overflow-y-auto">
-            <template x-if="chargement">
-                <p class="text-center text-sm text-gray-400 py-4">Recherche...</p>
-            </template>
-            <template x-if="!chargement && terme.length >= 2 && resultats.length === 0">
-                <p class="text-center text-sm text-gray-400 py-4">Aucun résultat.</p>
-            </template>
-            <template x-for="produit in resultats" :key="produit.url">
-                <a :href="produit.url" class="flex items-center gap-3 p-2 rounded-lg hover:bg-bj-creme transition">
-                    <div class="w-12 h-12 rounded-lg bg-[#ece6dc] overflow-hidden shrink-0">
-                        <template x-if="produit.image">
-                            <img :src="produit.image" :alt="produit.nom" class="w-full h-full object-cover">
-                        </template>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-bj-noir truncate" x-text="produit.nom"></p>
-                        <p class="text-xs text-bj-violet-dk font-semibold" x-text="produit.prix"></p>
-                    </div>
-                </a>
-            </template>
+        {{-- panneau de recherche --}}
+        <div x-show="ouvert" x-transition @click.outside="ouvert = false"
+             class="absolute right-0 top-12 w-80 bg-white rounded-2xl shadow-2xl p-4 z-50" style="display:none;">
+            <input x-ref="champ" x-model="terme" @input.debounce.300ms="chercher()"
+                   type="text" placeholder="Rechercher un sac..."
+                   class="w-full rounded-full border-gray-300 text-sm text-bj-noir focus:border-bj-violet focus:ring-bj-violet mb-3">
+
+            {{-- résultats --}}
+            <div class="max-h-80 overflow-y-auto">
+                <template x-if="chargement">
+                    <p class="text-center text-sm text-gray-400 py-4">Recherche...</p>
+                </template>
+                <template x-if="!chargement && terme.length >= 2 && resultats.length === 0">
+                    <p class="text-center text-sm text-gray-400 py-4">Aucun résultat.</p>
+                </template>
+                <template x-for="produit in resultats" :key="produit.url">
+                    <a :href="produit.url" class="flex items-center gap-3 p-2 rounded-lg hover:bg-bj-creme transition">
+                        <div class="w-12 h-12 rounded-lg bg-[#ece6dc] overflow-hidden shrink-0">
+                            <template x-if="produit.image">
+                                <img :src="produit.image" :alt="produit.nom" class="w-full h-full object-cover">
+                            </template>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-sm text-bj-noir truncate" x-text="produit.nom"></p>
+                            <p class="text-xs text-bj-violet-dk font-semibold" x-text="produit.prix"></p>
+                        </div>
+                    </a>
+                </template>
+            </div>
         </div>
     </div>
-</div>
 
-            {{-- panier --}}
-            <a href="{{ route('panier.index') }}" aria-label="Panier" class="relative text-white hover:text-bj-or transition flex items-center">
-                <x-heroicon-o-shopping-bag class="w-5 h-5 sm:w-6 sm:h-6" />
-                @php
-                    $sessionId = session('panier_session_id');
-                    $nbArticles = 0;
-                    if ($sessionId) {
-                        $panierCourant = \App\Models\Panier::where('session_id', $sessionId)->first();
-                        $nbArticles = $panierCourant ? $panierCourant->lignes()->sum('quantite') : 0;
-                    }
-                @endphp
-                @if($nbArticles > 0)
-                    <span class="absolute -top-2 -right-2 bg-bj-or text-bj-noir text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full grid place-items-center">
-                        {{ $nbArticles }}
-                    </span>
-                @endif
-            </a>
-        </div>
+    {{-- panier --}}
+    <a href="{{ route('panier.index') }}" aria-label="Panier" class="relative flex items-center text-white hover:text-bj-or transition">
+        <x-heroicon-o-shopping-bag class="w-5 h-5 sm:w-6 sm:h-6" />
+        @php
+            $sessionId = session('panier_session_id');
+            $nbArticles = 0;
+            if ($sessionId) {
+                $panierCourant = \App\Models\Panier::where('session_id', $sessionId)->first();
+                $nbArticles = $panierCourant ? $panierCourant->lignes()->sum('quantite') : 0;
+            }
+        @endphp
+        @if($nbArticles > 0)
+            <span class="absolute -top-2 -right-2 bg-bj-or text-bj-noir text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full grid place-items-center">
+                {{ $nbArticles }}
+            </span>
+        @endif
+    </a>
+
+</div>
 
     </div>
 </header>

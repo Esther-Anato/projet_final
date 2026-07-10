@@ -22,7 +22,7 @@
 
     {{-- ══════════ PRODUITS EN GRAND ══════════ --}}
     <section class="bg-bj-violet py-16">
-        <div class="max-w-6xl mx-auto px-6 space-y-16">
+        <div class="mmx-autax-w-6xl o px-6 space-y-16">
             @foreach($produits as $index => $produit)
                 @php
                     $coloris = $produit->collection->produitsActifs()->where('id', '!=', $produit->id)->limit(4)->get();
@@ -82,20 +82,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-    </section>
-
-    {{-- ══════════ RÉASSURANCE (à la place de l'avis) ══════════ --}}
-    <section class="bg-[#d9c5ad] py-16 text-center">
-        <div class="max-w-2xl mx-auto px-6">
-            <div class="flex justify-center gap-1 text-bj-or mb-4">
-                @for($i=0;$i<3;$i++)<x-heroicon-s-sparkles class="w-6 h-6" />@endfor
-            </div>
-            <p class="font-script text-bj-violet-dk text-4xl mb-3">Un savoir-faire ivoirien</p>
-            <p class="text-bj-noir/75 leading-relaxed">
-                Chaque sac de la collection {{ $collection->nom }} est façonné à Abidjan par nos artisans,
-                avec une attention particulière portée aux matières et aux finitions.
-            </p>
         </div>
     </section>
 

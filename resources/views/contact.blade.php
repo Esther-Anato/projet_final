@@ -1,17 +1,15 @@
-@extends('layouts.public')
-
+@extends('layouts.public-solid')
 @section('title', 'Contact - Blac Joyaux')
 
 @section('content')
 <section class="bg-bj-creme min-h-screen">
 
     {{-- Hero --}}
-    <div class="bg-bj-violet text-bj-creme py-16 px-6 text-center">
-        <p class="font-script text-3xl md:text-4xl text-bj-or mb-2" style="font-family: 'Great Vibes', cursive;">L'avenir en main</p>
-        <h1 class="font-display text-3xl md:text-5xl font-semibold" style="font-family: 'Bricolage Grotesque', sans-serif;">
+    <div class="bg-bj-creme  text-bj-violet py-16 px-6 text-center">
+                <h1 class="font-display text-3xl md:text-5xl font-semibold" style="font-family: 'Bricolage Grotesque', sans-serif;">
             Contactez-nous
         </h1>
-        <p class="mt-4 font-secondary text-bj-creme/80 max-w-xl mx-auto" style="font-family: 'Questrial', sans-serif;">
+        <p class="mt-4 font-secondary text-bj-violet/80 max-w-xl mx-auto" style="font-family: 'Questrial', sans-serif;">
             Une question sur un modèle, une commande, une visite au showroom ? Écrivez-nous.
         </p>
     </div>

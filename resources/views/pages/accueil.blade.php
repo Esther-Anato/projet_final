@@ -5,26 +5,26 @@
 @section('content')
 
     {{-- ══════════ HERO ══════════ --}}
-    <section class="relative min-h-[85vh] flex items-center bg-cover bg-center"
-             style="background-image: url('{{ asset('images/hero-sacs.jpg') }}')">
+<section class="relative min-h-[70vh] md:min-h-[85vh] flex items-center bg-cover bg-center md:bg-center"
+         style="background-image: url('{{ asset('images/hero-sacs.jpg') }}'); background-position: 70% center;">
 
-        {{-- voile pour garantir la lisibilité du texte à gauche --}}
-        <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent"></div>
+    {{-- voile : plus sombre en bas sur mobile pour la lisibilité, dégradé latéral sur desktop --}}
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 md:bg-gradient-to-r md:from-black/50 md:via-black/20 md:to-transparent"></div>
 
-        <div class="relative max-w-7xl mx-auto px-6 w-full">
-            <div class="max-w-lg">
-                <h1 class="font-script text-white text-6xl md:text-7xl leading-none drop-shadow-lg">
-                    L'avenir en main
-                </h1>
-                <a href="{{ route('produits.index') }}"
-                   class="mt-8 inline-flex items-center gap-2 border border-white/80 text-white font-semibold
-                          px-8 py-4 rounded-full hover:bg-white hover:text-bj-violet transition">
-                    Découvrir la boutique
-                    <x-heroicon-s-arrow-right class="w-4 h-4" />
-                </a>
-            </div>
+    <div class="relative max-w-7xl mx-auto px-6 w-full">
+        <div class="max-w-lg text-center md:text-left">
+            <h1 class="font-script text-white text-5xl md:text-7xl leading-none drop-shadow-lg">
+                L'avenir en main
+            </h1>
+            <a href="{{ route('produits.index') }}"
+               class="mt-8 inline-flex items-center gap-2 border border-white/80 text-white font-semibold
+                      px-8 py-4 rounded-full hover:bg-white hover:text-bj-violet transition">
+                Découvrir la boutique
+                <x-heroicon-s-arrow-right class="w-4 h-4" />
+            </a>
         </div>
-    </section>
+    </div>
+</section>
     {{-- ══════════ NOTRE HISTOIRE ══════════ --}}
   <section class="bg-bj-creme py-20">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">

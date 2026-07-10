@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.public-solid')
 
 @section('title', 'Commande confirmée — Blac Joyaux')
 
@@ -135,18 +135,18 @@
 
     </div>
 </div>
-{{-- ══ ANNULATION ══ --}}
+{{-- ══ CONTACTER LE SERVICE CLIENT ══ --}}
 @if(in_array($commande->statut, ['en_attente', 'confirmee']))
     <div class="mt-6 text-center">
-        <p class="text-sm text-bj-noir/60 mb-3">Vous souhaitez annuler cette commande ?</p>
-        <a href="https://wa.me/2250708771557?text={{ urlencode('Bonjour, je souhaite annuler ma commande '.($commande->numero_commande ?? '#'.$commande->id).'. Merci.') }}"
+        <p class="text-sm text-bj-noir/60 mb-3">Besoin de modifier ou d'annuler votre commande ?</p>
+        <a href="https://wa.me/2250708771557?text={{ urlencode('Bonjour, je vous contacte au sujet de ma commande '.($commande->numero_commande ?? '#'.$commande->id).'.') }}"
            target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 border border-red-300 text-red-600 font-medium px-6 py-3 rounded-full hover:bg-red-50 transition">
-            <x-heroicon-o-x-circle class="w-5 h-5" />
-            Annuler ma commande
+           class="inline-flex items-center gap-2 border border-bj-violet text-bj-violet font-medium px-6 py-3 rounded-full hover:bg-bj-violet hover:text-white transition">
+            <x-heroicon-o-chat-bubble-left-right class="w-5 h-5" />
+            Contacter le service client
         </a>
         <p class="text-xs text-bj-noir/40 mt-3">
-            Notre équipe traitera votre demande d'annulation dans les plus brefs délais.
+            Notre équipe est disponible pour toute demande concernant votre commande.
         </p>
     </div>
 @elseif($commande->statut === 'annulee')
